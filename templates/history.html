@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="container p-5">
+            
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="4"></td>
+                    <td>{ total | usd }}</td>
+                </tr>
+            </tfoot>
+            <tbody>
+            
+            {% for tran in transaction %}
+            <tr>
+                <td>{{ tran.symbol }}</td>
+                <td></td>
+                <td>{{ tran.shares }}</td>
+                <td>{{ tran.price | usd }}</td>
+                <td>{{ tran.shares * tran.price | usd }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+        </main>
+{% endblock %}
